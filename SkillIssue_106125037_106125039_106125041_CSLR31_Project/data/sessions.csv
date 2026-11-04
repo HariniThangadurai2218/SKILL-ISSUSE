@@ -1,0 +1,7 @@
+session_id,request_id,learner_id,mentor_id,skill,scheduled_time,status,learner_rating,quiz_score,learner_outcome,mentor_outcome
+1,1,"1","2","AIML","30/10/26","AWAITING_CONFIRMATION",-1,-1,"PENDING","COMPLETED"
+2,5,"2","4","dance","tmr 2pm","COMPLETED",4,4,"COMPLETED","COMPLETED"
+3,6,"L101","M101","C++","Monday","SCHEDULED",-1,96,"PENDING","MISSED"
+4,8,"L101","M101","C++","Tuesday","SCHEDULED",5,95,"PENDING","COMPLETED"
+5,9,"4","1","c++","tmr 7am","SCHEDULED",5,4,"PENDING","COMPLETED"
+6,10,"5","1","python","mon","SCHEDULED",-1,-1,"PENDING","COMPLETED"

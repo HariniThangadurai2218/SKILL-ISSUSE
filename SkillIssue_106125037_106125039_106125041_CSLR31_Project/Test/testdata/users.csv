@@ -1,0 +1,6 @@
+id,name,password,skills,total_points,teaching_points,teaching_sessions,learning_sessions
+"u1","Asha","pw1","C++;Python",30.0,40.0,3,0
+"u2","Bala","pw2","python;Web Development",30.0,40.0,5,0
+"u3","Chitra","pw3","Python",30.0,10.0,1,0
+"u4","Dev","pw4","Dance",30.0,0.0,0,0
+"u5","Esha","pw5","Java",30.0,25.0,2,0

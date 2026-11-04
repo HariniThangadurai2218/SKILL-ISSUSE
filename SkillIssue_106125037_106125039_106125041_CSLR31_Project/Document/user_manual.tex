@@ -1,0 +1,43 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[margin=1.6cm]{geometry}
+\usepackage{listings,booktabs,enumitem,hyperref}
+\lstset{basicstyle=\ttfamily\footnotesize,frame=single,language=bash}
+\setlist{nosep}\pagestyle{empty}
+\begin{document}
+\begin{center}{\LARGE\textbf{Skill Issue -- User Manual}}\\ Peer-to-peer skill exchange: teach, learn, earn points.\end{center}
+\section*{1. Requirements}
+g++ 9+ (C++17) and make; Node.js 18+ only for the web UI.
+\section*{2. Build}
+\begin{lstlisting}
+make        # builds ./a.out (console) and ./server (web API)
+make test   # optional: 59 automated tests
+\end{lstlisting}
+\section*{3. Run}
+\begin{lstlisting}
+./a.out                                      # console version
+./server                                     # web API, http://localhost:8080
+cd frontend && npm install && npm run dev    # web UI,  http://localhost:5173
+\end{lstlisting}
+Start from the project folder so that \texttt{data/} (the CSV files) is found.
+\section*{4. Using the app}
+\begin{enumerate}
+\item \textbf{Register} with ID, name, password and skills separated by \texttt{;} (e.g.\ \texttt{C++;Python;Guitar}).
+\item \textbf{Log in} (console admin: \texttt{admin} / \texttt{admin123}).
+\item \textbf{Learn:} pick a skill, choose a mentor from the ranked list, enter a preferred time, press \emph{Book}.
+\item \textbf{Teach:} open \emph{Mentor Inbox}; \emph{Accept} with a proposed time or \emph{Reject}.
+\item \textbf{Confirm:} in \emph{My Bookings} accept the mentor's offer; a session is scheduled.
+\item \textbf{After the session:} mentor reports Completed/Missed/Cancelled; learner rates the mentor (1--5); mentor grades the quiz.
+\item \textbf{Leaderboard} ranks mentors by teaching points; \textbf{Profile} shows points and lets you edit skills.
+\end{enumerate}
+\section*{5. Points}
+Rating $\times5$ gives the mentor teaching points (console); quiz marks give the learner points; a confirmed no-show costs 5 points; new users start with 30.
+\section*{6. Troubleshooting}
+\begin{tabular}{@{}p{5cm}p{11cm}@{}}\toprule
+Invalid ID or password & IDs and passwords are case-sensitive.\\
+Web UI cannot reach API & Start \texttt{./server} first; port 8080 must be free.\\
+Data looks empty & Run from the folder that contains \texttt{data/}.\\
+Reset & Delete the four CSV files in \texttt{data/} (keep a backup).\\\bottomrule
+\end{tabular}
+
+\smallskip\noindent\textit{Prototype notice: passwords are stored in plain text -- do not use real passwords.}
+\end{document}

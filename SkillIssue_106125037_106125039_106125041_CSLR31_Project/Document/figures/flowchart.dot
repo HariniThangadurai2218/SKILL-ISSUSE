@@ -1,0 +1,45 @@
+digraph SkillIssue {
+  rankdir=TB; nodesep=0.35; ranksep=0.45; fontname="Helvetica";
+  node [fontname="Helvetica", fontsize=11, shape=box, style="rounded,filled", fillcolor="#eef3fb", color="#33507a"];
+  edge [fontname="Helvetica", fontsize=9, color="#444444"];
+
+  start [label="Start", shape=oval, fillcolor="#d8f0d8"];
+  load  [label="Platform(): loadData()\nStorage reads 4 CSV files into\nvectors (users, requests, offers, sessions)"];
+  ui    [label="Entry point", shape=diamond, fillcolor="#fff3cd"];
+  web   [label="server.cpp\nHTTP API :8080\n(React frontend)"];
+  cli   [label="main.cpp\nConsole menu\nPlatform::run()"];
+  auth  [label="Register / Login\nregisterUserAPI, loginAPI\n(unique ID, admin reserved)"];
+  role  [label="Role?", shape=diamond, fillcolor="#fff3cd"];
+  admin [label="Admin menu\nview users/requests/sessions\nresolve disputes"];
+  user  [label="User menu"];
+
+  prof  [label="Profile and skills\ngetProfileAPI\nupdateSkillsAPI"];
+  find  [label="Find mentors\ngetMatchingMentorsAPI\nfilter by skill, mergeSort\nby teaching points"];
+  book  [label="Book session\nbookSessionAPI\nrequest = PENDING"];
+  inbox [label="Mentor inbox\ngetMentorInboxAPI\nrespondToMentorRequestAPI"];
+  dec   [label="Mentor action?", shape=diamond, fillcolor="#fff3cd"];
+  rej   [label="REJECTED\noffers removed"];
+  off   [label="Offer time\nrequest = OFFERED"];
+  acc   [label="Learner accepts offer\nacceptBookingOfferAPI\nrequest = CONFIRMED\nSession = SCHEDULED"];
+  att   [label="Attendance report\nreportOutcomeAPI\nCOMPLETED / MISSED / CANCELLED\n(no-show -> dispute -> admin)"];
+  rate  [label="Learner rates mentor (1-5)\nrateSessionAPI\nmentor +5 x rating points"];
+  quiz  [label="Mentor grades quiz\ngradeQuizAPI\nlearner + quiz points"];
+  lead  [label="Leaderboard\ngetLeaderboardAPI\nmergeSort by teachingPoints"];
+  save  [label="saveData()\nStorage writes all CSVs", fillcolor="#fde2e2"];
+  end   [label="Exit", shape=oval, fillcolor="#f8d7da"];
+
+  start -> load -> ui;
+  ui -> web [label="web"]; ui -> cli [label="console"];
+  web -> auth; cli -> auth;
+  auth -> role;
+  role -> admin [label="admin"]; role -> user [label="user"];
+  user -> prof; user -> find; user -> inbox; user -> rate; user -> quiz; user -> att; user -> lead;
+  find -> book -> inbox;
+  inbox -> dec;
+  dec -> rej [label="reject"]; dec -> off [label="accept"];
+  off -> acc -> att;
+  att -> rate [label="completed"]; att -> quiz [label="completed"];
+  admin -> att [label="resolve", style=dashed];
+  rej -> save; prof -> save; rate -> save; quiz -> save; acc -> save; book -> save;
+  save -> end [label="logout / exit"];
+}

@@ -1,0 +1,5 @@
+object/*.o
+a.out
+server
+test_runner
+frontend/node_modules
